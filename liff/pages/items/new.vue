@@ -70,7 +70,8 @@ export default {
         type: ''
       },
       added: [],
-      finish: false
+      finish: false,
+      items: []
     }
   },
   computed: {
@@ -136,13 +137,18 @@ export default {
         this.inited = true
         this.overlay.show = false
       } catch (error) {
-        this.$swal.fire({
-          type: 'error',
-          title: '錯誤',
-          text: '系統錯誤'
-        }).then(() => {
-          this.liff.closeWindow()
-        })
+        if (error.response.status !== 404) {
+          this.$swal.fire({
+            type: 'error',
+            title: '錯誤',
+            text: '系統錯誤'
+          }).then(() => {
+            this.liff.closeWindow()
+          })
+        } else {
+          this.inited = true
+          this.overlay.show = false
+        }
       }
     },
     decode (data) {
@@ -218,16 +224,16 @@ export default {
     },
     exit () {
       if (this.inited) {
-        // const items = this.added.map((add) => {
-        //   return add.name
-        // }).slice(0, 3).join('、')
+        const items = this.added.map((add) => {
+          return add.name
+        }).slice(0, 3).join('、')
 
-        // this.liff.sendMessages([
-        //   {
-        //     type: 'text',
-        //     text: `已於${new Date().toLocaleDateString()}新增${items}等${this.added.length}樣品項`
-        //   }
-        // ])
+        this.liff.sendMessages([
+          {
+            type: 'text',
+            text: `已於${new Date().toLocaleDateString()}新增${items}等${this.added.length}樣品項`
+          }
+        ])
         //   .finally(() => {
         //     this.liff.closeWindow()
         //   })
