@@ -72,7 +72,7 @@ export default {
           errormsg = '系統錯誤'
         }
       } catch (error) {
-        // 404 = use not found
+        // 404 = user not found
         // employee-id is new member register page
         if (error.response.status === 404) {
           if (this.$route.name !== 'employee-id') {
