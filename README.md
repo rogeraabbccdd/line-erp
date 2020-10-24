@@ -5,7 +5,8 @@
 </p>
 
 一款以 LINE 生態系量身打造的企業資源管理系統  
-**注意: 本專案為 prototype demo**
+**注意: 本專案為 prototype demo**  
+[概念影片](https://youtu.be/N3mSvw5oIeM)
 
 ![screenshot1](./other_assets/item.png)
 ![screenshot2](./other_assets/check.png)
